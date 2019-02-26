@@ -39,7 +39,7 @@
 import os
 import csv
 
-# Establishes date,revenue, revenue change, and report (for output) variables as lists so I can append them later with a for loop
+# Establishes list variables that I will append later with a for loop
 candidate = []
 unique_candidates = []
 unique_candidates_count = []
