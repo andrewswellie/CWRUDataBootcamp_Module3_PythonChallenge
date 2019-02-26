@@ -28,29 +28,53 @@
 #  Greatest Decrease in Profits: Sep-2013 ($-2196167)
 #  ```
 #
-#* In addition, your final script should both print the analysis to the terminal and export a text file with the results.
+##* In addition, your final script should both print the analysis to the terminal and export a text file with the results.
+#
 
-
-# Module to create file paths across operating systems
+# Imports the OS and CSV modules necessary to complete the exercise
 import os
-# Module for reading CSV files
 import csv
 
-csvpath = os.path.join('Resources', 'budget_data.csv')
+# Establishes date,revenue, revenue change, and report (for output) variables as lists so I can append them later with a for loop
+date = []
+revenue = []
+revenue_change = []
+report = []
 
-
-
-
-# Open CSV file with CSV Reader Module
-
-with open(csvpath, newline='') as csvfile:
-
+#Opens the directory that contains the csv file, sets the delimiter as ",", and establishes the variable csvfile as the data file
+resource_csv = os.path.join('../PyBank/Resources', 'budget_data.csv')
+with open(resource_csv, newline = '') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
-
-    print(csvreader)
-
+    csvfile = csv.reader(csvfile)
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+        
+# For loop that will add all the instances of a date and revenue to their list variables. Made sure to cast both to their appropriate variable type. Making sure to indent within the opened CSV file
+    for row in csvfile:
+       date.append(str(row[0]))
+       revenue.append(int(row[1])) 
 
-    for row in csvreader:
-        print(row)
+# calculating the total months using len and the total revenue using a sum   
+    ttl_months = len(revenue)
+    total_revenue = sum(revenue)
+    
+# For Loop that calculates the avg revenue change, greatest increase, and greatest decrease, and stores them to their own variables
+    for i in range(len(revenue)-1):
+        revenue_change.append(revenue[i+1]-revenue[i])
+    average_revenue_change = sum(revenue_change)/len(revenue_change)
+    max_revenue_change = max(revenue_change)
+    min_revenue_change = min(revenue_change)
+
+# Appends my report list with the strings of text that include the outputs of my financial calculations. Makes sure to break the information into their own new lines    
+    report.append('Financial Analysis for file: '+str(csvfile)+'\n')
+    report.append('--------------------------------------------------'+'\n')
+    report.append('Total Months: '+str(ttl_months)+'\n')
+    report.append('Total Revenue: '+str(total_revenue)+'\n')
+    report.append('Average Revenue Change: '+str(average_revenue_change)+'\n')
+    report.append('Greatest Increase in Revenue: '+str(date[revenue_change.index(max_revenue_change)+1])+' ('+str(max_revenue_change)+')'+'\n')
+    report.append('Greatest Decrease in Revenue: '+str(date[revenue_change.index(min_revenue_change)+1])+' ('+str(min_revenue_change)+')\n')
+
+# Prints my report list to the console as well as creating a new .txt file called output_budget.txt that includes the same information
+    for line in report:
+        print(line,end='')
+    with open('output_budget.txt','w') as output:
+        output.writelines(report)
