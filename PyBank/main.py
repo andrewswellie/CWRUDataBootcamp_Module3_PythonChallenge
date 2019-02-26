@@ -65,13 +65,13 @@ with open(resource_csv, newline = '') as csvfile:
     min_revenue_change = min(revenue_change)
 
 # Appends my report list with the strings of text that include the outputs of my financial calculations. Makes sure to break the information into their own new lines    
-    report.append('Financial Analysis for file: '+str(csvfile)+'\n')
+    report.append('Financial Analysis''\n')
     report.append('--------------------------------------------------'+'\n')
     report.append('Total Months: '+str(ttl_months)+'\n')
-    report.append('Total Revenue: '+str(total_revenue)+'\n')
-    report.append('Average Revenue Change: '+str(average_revenue_change)+'\n')
-    report.append('Greatest Increase in Revenue: '+str(date[revenue_change.index(max_revenue_change)+1])+' ('+str(max_revenue_change)+')'+'\n')
-    report.append('Greatest Decrease in Revenue: '+str(date[revenue_change.index(min_revenue_change)+1])+' ('+str(min_revenue_change)+')\n')
+    report.append('Total: $'+str(total_revenue)+'\n')
+    report.append('Average Change: $'+str(average_revenue_change)+'\n')
+    report.append('Greatest Increase in Profits: '+str(date[revenue_change.index(max_revenue_change)+1])+' ($'+str(max_revenue_change)+')'+'\n')
+    report.append('Greatest Decrease in Profits: '+str(date[revenue_change.index(min_revenue_change)+1])+' ($'+str(min_revenue_change)+')\n')
 
 # Prints my report list to the console as well as creating a new .txt file called output_budget.txt that includes the same information
     for line in report:
