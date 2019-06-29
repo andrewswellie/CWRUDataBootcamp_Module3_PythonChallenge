@@ -42,7 +42,7 @@ revenue_change = []
 report = []
 
 #Opens the directory that contains the csv file, sets the delimiter as ",", and establishes the variable csvfile as the data file
-resource_csv = os.path.join('../PyBank/Resources', 'budget_data.csv')
+resource_csv = os.path.join('budget_data.csv')
 with open(resource_csv, newline = '') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     csvfile = csv.reader(csvfile)
