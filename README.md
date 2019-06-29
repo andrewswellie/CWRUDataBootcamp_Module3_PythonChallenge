@@ -83,6 +83,3 @@ Both of these challenges encompasses a real-world situation where your newfound 
   -------------------------
   ```
 
-
-
-Trilogy Education Services © 2018. All Rights Reserved.
